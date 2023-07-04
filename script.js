@@ -11,7 +11,8 @@ function calculateAge(){
     if(birthdayValue === ""){
         alert("Please enter your birthday")
     }else{
-        const age = getAge(birthdayValue)
+        const age = getAge(birthdayValue);
+        console.log(age)
     }
 }
 
@@ -19,9 +20,16 @@ function calculateAge(){
 function getAge(birthdayValue){
     const currentDate = new Date()
     const birthdayDate = new Date (birthdayValue)
-    const age = currentDate.getFullYear() - birthdayDate.getFullYear();
+    let age = currentDate.getFullYear() - birthdayDate.getFullYear();
     console.log(age);
+ const month = currentDate.getMonth() - birthdayDate.getMonth();
+ console.log(month);
 
+ //to prevent any problem if the birth month is the same with the current month
+ if(month <0 || (month === 0 && currentDate.getDate()< birthdayDate.getDate())){
+    age--
+ }
+ return age;
 }
 
 btnEl.addEventListener("click", calculateAge)
